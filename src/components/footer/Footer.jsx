@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='relative text-white'>
+    <div className=''>
       foot
     </div>
   )

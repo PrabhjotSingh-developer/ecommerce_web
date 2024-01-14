@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import Layout from '../../components/layout/Layout'
 import MyContext from '../../context/data/myContext'
+import HeroSection from '../../components/heroSection/HeroSection.jsx'
 const Home = () => {
   const context = useContext(MyContext)
   // console.log(context)
@@ -8,8 +9,7 @@ const Home = () => {
 
   return (
     <Layout>
-        {/* <h1>Name = {name}</h1> */}
-        {/* <h2>Rollno = {rollno}</h2> */}
+         <HeroSection/>
     </Layout>
   )
 }
