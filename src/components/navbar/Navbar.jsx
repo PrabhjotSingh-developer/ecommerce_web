@@ -32,7 +32,7 @@ const Navbar = () => {
   const { mode, toggleMode } = context;
   const [mobileMenu,setMobileMenu] = useState(false);
   const color = mode === 'light' ? '' :'text-white'
-  const background_color = mode === 'light' ? ' ':'rgb(40, 44, 52)' 
+  const background_color = mode === 'light' ? 'bg-[#f3f4f6]':'rgb(40, 44, 52)' 
   function dropdownMenu()
   {
           setMobileMenu(!mobileMenu)
@@ -40,13 +40,13 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div
-        className={`upper_nav bg-pink-600 text-white  ${background_color }`}
+        className={`upper_nav  text-white  ${mode === 'dark' ?('bg-[#3e4042]'):('bg-pink-600') }`}
       >
         <p className="text-center py-4 font-[600]">
           Get free delivery on orders over ₹300
         </p>
       </div>
-      <nav className={`flex justify-between px-4 py-3 mx-auto relative ${color,background_color}`}>
+      <nav className={`flex justify-between px-4 py-5 mx-auto relative   ${color,background_color}`}>
 
         <div className="logo flex items-center gap-4">
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
@@ -69,8 +69,8 @@ const Navbar = () => {
         </div>
       
       </nav>
-       <div className={`mobile_sidebar w-[100%] sm:hidden ${mobileMenu ?  'h-[100vh]': ''}    ${color,background_color}`}>
-             <NavLink className={`absolute top-[100px] w-[100%]  gap-4 flex flex-col p-5 ${color} ${mobileMenu?'left-0 transition-all':'left-[-100%] transition-all'} `}/>
+       <div className={`mobile_sidebar w-[100%] sm:hidden ${mobileMenu?('h-[100vh]'):('')}   ${color,background_color}`}>
+             <NavLink className={`absolute top-[115px] w-[100%] gap-4 flex flex-col p-6 ${color} ${mobileMenu?'left-8 transition-all':'left-[-100%] transition-all'} `}/>
         </div>
     </header>
   );

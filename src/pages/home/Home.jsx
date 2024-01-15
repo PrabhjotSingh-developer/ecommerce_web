@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Layout from '../../components/layout/Layout'
 import MyContext from '../../context/data/myContext'
 import HeroSection from '../../components/heroSection/HeroSection.jsx'
+import Filter from '../../components/filter/Filter.jsx'
 const Home = () => {
   const context = useContext(MyContext)
   // console.log(context)
@@ -10,6 +11,7 @@ const Home = () => {
   return (
     <Layout>
          <HeroSection/>
+         <Filter/>
     </Layout>
   )
 }
