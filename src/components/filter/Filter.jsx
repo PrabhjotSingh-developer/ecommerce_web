@@ -9,7 +9,7 @@ const Filter = () => {
   return (
     <div className={`${bg_color} w-[95%] md:w-[80%] mx-auto p-9 mt-5 rounded-lg`}>
          <div className={`search_bar flex items-center gap-4 justify-center bg-white mx-auto px-2 mb-4 py-2 md:py-3 w-[100%]`}>
-                <IoSearch className="cursor-pointer"/>
+                <IoSearch className="cursor-pointer text-black"/>
                 <input type="text" placeholder='Search' className=' w-[85%] outline-none'/>
          </div>
          <div className="filter_sec">
