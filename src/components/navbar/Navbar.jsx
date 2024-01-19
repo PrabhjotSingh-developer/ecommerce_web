@@ -38,7 +38,7 @@ const Navbar = () => {
           setMobileMenu(!mobileMenu)
   }
   return (
-    <header className="navbar">
+    <header className="navbar  w-[100%]">
       <div
         className={`upper_nav  text-white  ${mode === 'dark' ?('bg-[#3e4042]'):('bg-pink-600') }`}
       >
@@ -46,7 +46,7 @@ const Navbar = () => {
           Get free delivery on orders over ₹300
         </p>
       </div>
-      <nav className={` px-4 py-4 relative ${color,background_color} `}>
+      <nav className={` px-4 py-4 relative w-[100%]  ${color,background_color} `}>
         <div className="main_menu flex justify-between items-center w-[100%] mx-auto">
              <div className="logo flex items-center gap-4">
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
