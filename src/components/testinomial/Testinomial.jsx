@@ -30,13 +30,13 @@ const Testinomial = () => {
     <div>
         <div className={`testinomial_heading ${background_color} py-8`}>
             <div className="flex flex-col items-center">
-             <h2 className='font-bold text-xl'>Testimonial</h2>
-              <h2 className='font-semibold text-xl'>What our <span className='text-pink-600'>customers</span>  are saying</h2>
+             <h2 className={`font-bold text-xl ${color}`}>Testimonial</h2>
+              <h2 className={`font-semibold text-xl ${color}`}>What our <span className='text-pink-600'>customers</span>  are saying</h2>
             </div>
-            <div className="testinomial_card flex w-[95%] md:w-[80%] gap-5 mx-auto mt-8">
+            <div className="testinomial_card flex w-[95%] md:w-[80%] gap-5 mx-auto mt-8 flex-wrap flex-col justify-center sm:flex-row ">
                 {
                     data.map((item)=>(
-                         <div className="testinomial_items flex items-center flex-col w-[32%] p-4 gap-4">
+                         <div className={`testinomial_items flex items-center flex-col w-[90%] mx-auto lg:w-[32%] p-4 gap-4 ${color}`}>
                           <div className="w-[100px] h-[100px] bg-pink-600 rounded-full">
 
                           </div>
