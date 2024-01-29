@@ -30,7 +30,7 @@ const Footer = () => {
               {
                 data.map((item)=>{
                     const {links} = item
-                    console.log(links)
+                    // console.log(links)
                   return <div className={`footer_items flex flex-col gap-y-3 sm:py-3 items-center ${color} `}>
                          <h3 className='font-bold'>{item.head}</h3>
                          <div className="allLinks flex flex-col gap-3 items-center sm:items-start">
