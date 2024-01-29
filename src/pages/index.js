@@ -5,6 +5,9 @@ import Dashboard from './admin/dashboard/Dashboard.jsx'
 import NoPage from './nopage/NoPage.jsx'
 import Login from "./registration/Login.jsx";
 import Signup from "./registration/Signup.jsx";
+import ProductInfo from "./productInfo/ProductInfo.jsx";
+import AddProduct from "./admin/pages/AddProduct.jsx";
+import UpdateProduct from "./admin/pages/UpdateProduct.jsx";
 export {
-    Home,Cart,Order,Dashboard,NoPage,Login,Signup
+    Home,Cart,Order,Dashboard,NoPage,Login,Signup,ProductInfo,AddProduct,UpdateProduct
 }

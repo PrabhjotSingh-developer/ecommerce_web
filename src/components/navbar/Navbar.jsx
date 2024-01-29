@@ -6,7 +6,7 @@ import { IoSunny } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 const NavLink = (props) =>{
-      console.log(props)
+      
       return (
             <ul className={` ${props.className}`}>
             <li>
@@ -16,7 +16,7 @@ const NavLink = (props) =>{
               <Link>Order</Link>
             </li>
             <li>
-              <Link>Admin</Link>
+              <Link to={"/dashboard"}>Admin</Link>
             </li>
             <li>
               <Link>Logout</Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
                 <GiHamburgerMenu className={`cursor-pointer `} onClick={dropdownMenu}/>
            </div>
-          <h3 className={`font-1rem font-[800] ${color}`}>Ecommerce</h3>
+           <Link to="/" > <h3 className={`font-1rem font-[800] ${color}`}>Ecommerce</h3></Link> 
               </div>
             <div className="links flex items-center gap-8">
            <NavLink className={`hidden gap-4 items-center sm:flex ${color}` }/>
@@ -61,7 +61,7 @@ const Navbar = () => {
                <IoSunny onClick={toggleMode}/>
               </li>
               <li>
-                  <Link className="flex items-center">
+                  <Link to="/cart" className="flex items-center">
                       <IoCartOutline /> 0{" "}
                   </Link>
               </li>
@@ -70,7 +70,7 @@ const Navbar = () => {
         </div>
      
         <div className={`mobile_sidebar sm:hidden ${background_color}`}>
-             <NavLink className={`absolute top-[63px] w-[100%] gap-4 flex flex-col p-6  ${color} ${background_color} ${mobileMenu?'left-0 transition-all h-[100vh]':'left-[-100%] transition-all'} `}/>
+             <NavLink className={`absolute top-[63px] w-[100%] gap-4 flex flex-col p-6 z-40 ${color} ${background_color} ${mobileMenu?'left-0 transition-all h-[100vh]':'left-[-100%] transition-all'} `}/>
         </div>
       </nav>
      
