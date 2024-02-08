@@ -1,25 +1,41 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import MyContext from "../../context/data/myContext.jsx";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoSunny } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import {toast} from 'react-toastify'
 const NavLink = (props) =>{
-      
+  const navigate = useNavigate()
+      function logout()
+      {
+        localStorage.clear('user');
+        toast.success('logout Successful')
+        navigate("/")
+      }
+      const user = JSON.parse( localStorage.getItem('user'))
+      // console.log(user)
       return (
             <ul className={` ${props.className}`}>
             <li>
               <Link>All Products</Link>
             </li>
-            <li>
-              <Link>Order</Link>
-            </li>
-            <li>
+            
+              { user!=null &&
+                <li>
+              <Link>Order</Link> </li>
+              }
+           
+            { user?.user?.email === "hello@gmail.com" &&
+              <li>
               <Link to={"/dashboard"}>Admin</Link>
-            </li>
+              </li>
+            }
             <li>
-              <Link>Logout</Link>
+              {
+                user === null ? <Link to={"/login"}>Login</Link>  :<Link onClick={logout}>Logout</Link>
+              }
             </li>
             <li>
               <Link>India</Link>
