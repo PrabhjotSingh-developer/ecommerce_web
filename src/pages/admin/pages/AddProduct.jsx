@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import MyContext from '../../../context/data/myContext'
 const AddProduct = () => {
    const context = useContext(MyContext)
-   console.log(context)
+  
    const {product,setProduct,addProducts} = context
-   console.log(product)
+//    console.log(product)
     return (
         <div>
             <div className=' flex justify-center items-center h-screen'>

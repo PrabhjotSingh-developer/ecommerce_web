@@ -4,6 +4,7 @@ import MyContext from './myContext.jsx'
 import {toast} from 'react-toastify'
 import { Timestamp,addDoc,collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { fireDB } from '../../firebase/FirebaseConfig.jsx';
+
 import { useNavigate } from 'react-router-dom'
 const MyState = (props) => {
   const navigate = useNavigate()
@@ -27,6 +28,7 @@ const MyState = (props) => {
     price:null,
     imageUrl:null,
     category:null,
+    time:Timestamp.now(),
     description:null,
     date: new Date().toLocaleString(
       "en-US",
@@ -45,7 +47,7 @@ const MyState = (props) => {
     setLoading(true)
 
     try {
-       const productRef = collection(fireDB,'product')
+       const productRef = collection(fireDB,'products')
        await addDoc(productRef,product)
        toast.success("Add Product successfully");
        getProductData()
@@ -59,29 +61,30 @@ const MyState = (props) => {
     setProduct("")
   }
   const [products,setProducts] = useState([]);
-  const getProductData = async() =>{
+  const getProductData = async () =>{
     setLoading(true);
     try {
-    
-       const q =  query(collection(fireDB,'product'),orderBy("time"));
+      
+       const q =  query(
+        collection(fireDB,"products"),
+        orderBy("time")  
+         );
        const data = onSnapshot(q,(QuerySnapshot)=>{
          let productArray = [];
-    
-          console.log(QuerySnapshot)
+        
           QuerySnapshot.forEach((doc)=>{ 
-           console.log(doc.data())
             productArray.push({...doc.data(),id:doc.id});
           })
+         
           setProducts(productArray);
-          console.log(productArray)
           setLoading(false)
         })
-       console.log(data)
-        return ()=>data
+        return data
 
-    } catch (error) {
+    } catch (error) { 
        console.log(error)
        setLoading(false)
+       throw error;
     }
   }
   useEffect(()=>{
