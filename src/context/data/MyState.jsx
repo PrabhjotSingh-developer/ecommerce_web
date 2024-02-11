@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import MyContext from './myContext.jsx'
 import {toast} from 'react-toastify'
-import { Timestamp,addDoc,collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { Timestamp,addDoc,collection, deleteDoc, onSnapshot, orderBy, query, setDoc,doc } from 'firebase/firestore'
 import { fireDB } from '../../firebase/FirebaseConfig.jsx';
 
 import { useNavigate } from 'react-router-dom'
@@ -67,7 +67,7 @@ const MyState = (props) => {
       
        const q =  query(
         collection(fireDB,"products"),
-        orderBy("time")  
+        orderBy("category")  
          );
        const data = onSnapshot(q,(QuerySnapshot)=>{
          let productArray = [];
@@ -87,11 +87,47 @@ const MyState = (props) => {
        throw error;
     }
   }
+
+  const editHandle = (item)=>{
+    setProduct(item);
+  }
+  // update product 
+  const updateProduct = async(item)=>{
+       setLoading(true);
+       try {
+           await setDoc(doc(fireDB,"products",product.id),product)
+           toast.success("Product updated Successfully");
+           getProductData();
+           setLoading(false)
+           navigate("/dashboard")
+       } catch (error) {
+        setLoading(false)
+        toast.error("Product updated failed")
+        console.log(error)
+       }
+  }
+  const deleteProduct = async(item) =>{
+    setLoading(true)
+    try {
+       await deleteDoc(doc(fireDB,"products",item.id))
+       toast.success("Product deleted successfully")
+       setLoading(false)
+       getProductData();
+       navigate("/dashboard")
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+       toast.error("! Product not deleted");
+       navigate("/dashboard")
+
+      //  console.log("Product not deleted")
+    }
+  }
   useEffect(()=>{
          getProductData()
   },[])
   return (
-    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products}}>
+    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct}}>
          {props.children}
     </MyContext.Provider>
   )

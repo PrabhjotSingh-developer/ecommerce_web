@@ -18,6 +18,9 @@ const NavLink = (props) =>{
       // console.log(user)
       return (
             <ul className={` ${props.className}`}>
+              <li>
+                 <Link to={"/"}>Home</Link>
+              </li>
             <li>
               <Link>All Products</Link>
             </li>

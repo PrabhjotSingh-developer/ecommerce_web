@@ -1,6 +1,10 @@
 import React from 'react'
-
+import MyContext from '../../../context/data/myContext'
+import { useContext } from 'react'
 const UpdateProduct = () => {
+    const context = useContext(MyContext)
+  
+    const {product,setProduct,updateProduct} = context
   return (
     <div>
             <div className=' flex justify-center items-center h-screen'>
@@ -13,6 +17,8 @@ const UpdateProduct = () => {
                             name='title'
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                             placeholder='Product title'
+                            value={product.title}
+                            onChange={(e)=>setProduct({...product,title:e.target.value})}
                         />
                     </div>
                     <div>
@@ -20,6 +26,8 @@ const UpdateProduct = () => {
                             name='price'
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                             placeholder='Product price'
+                            value={product.price}
+                            onChange={(e)=>setProduct({...product,price:e.target.value})}
                         />
                     </div>
                     <div>
@@ -27,6 +35,8 @@ const UpdateProduct = () => {
                             name='imageurl'
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                             placeholder='Product imageUrl'
+                            value={product.imageUrl}
+                            onChange={(e)=>setProduct({...product,imageUrl:product.imageUrl})}
                         />
                     </div>
                     <div>
@@ -34,17 +44,23 @@ const UpdateProduct = () => {
                             name='category'
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                             placeholder='Product category'
+                            value={product.category}
+                            onChange={(e)=>setProduct({...product,category:product.category})}
                         />
                     </div>
                     <div>
                        <textarea cols="30" rows="10" name='title'
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
-                            placeholder='Product title'>
-
+                            placeholder='Product title'
+                             value={product.description}
+                            onChange={(e)=>setProduct({...product,description:product.description})}
+                            >
+                          
                        </textarea>
                     </div>
                     <div className=' flex justify-center mb-3'>
                         <button
+                            onClick={()=>updateProduct(product)}
                             className=' bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg'>
                             Update Product
                         </button>
