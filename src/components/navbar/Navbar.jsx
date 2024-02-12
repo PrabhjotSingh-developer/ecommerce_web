@@ -5,8 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoSunny } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
 import {toast} from 'react-toastify'
 const NavLink = (props) =>{
+
   const navigate = useNavigate()
       function logout()
       {
@@ -47,6 +49,8 @@ const NavLink = (props) =>{
       )
 }
 const Navbar = () => {
+  const cartItems = useSelector((state)=>state.cart);
+
   const context = useContext(MyContext);
   const { mode, toggleMode } = context;
   const [mobileMenu,setMobileMenu] = useState(false);
@@ -81,7 +85,7 @@ const Navbar = () => {
               </li>
               <li>
                   <Link to="/cart" className="flex items-center">
-                      <IoCartOutline /> 0{" "}
+                      <IoCartOutline /> {cartItems.length }{" "}
                   </Link>
               </li>
           </ul>

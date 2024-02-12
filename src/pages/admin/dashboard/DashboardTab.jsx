@@ -107,7 +107,9 @@ function DashboardTab() {
                         <th scope="col" className="px-6 py-3">
                           Category
                         </th>
-                       
+                        <th scope="col" className="px-6 py-3">
+                          Date
+                        </th>
                         <th scope="col" className="px-6 py-3">
                           Action
                         </th>
@@ -158,7 +160,12 @@ function DashboardTab() {
                             >
                               {item.category}
                             </td>
-                            
+                            <td
+                              className="px-6 py-4 text-black "
+                              style={{ color: mode === "dark" ? "white" : "" }}
+                            >
+                              {item.date}
+                            </td>
                             <td className="px-6 py-4">
                               <div className=" flex gap-2">
                                 <div

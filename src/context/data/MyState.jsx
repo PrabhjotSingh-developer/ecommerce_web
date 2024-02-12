@@ -67,7 +67,7 @@ const MyState = (props) => {
       
        const q =  query(
         collection(fireDB,"products"),
-        orderBy("category")  
+        // orderBy("time")  
          );
        const data = onSnapshot(q,(QuerySnapshot)=>{
          let productArray = [];
