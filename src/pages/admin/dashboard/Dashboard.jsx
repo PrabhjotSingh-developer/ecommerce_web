@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/layout/Layout.jsx'
 import { useContext } from 'react'
 import MyContext from '../../../context/data/myContext.jsx'
 import {FaUserTie } from 'react-icons/fa';
 import DashboardTab from './DashboardTab.jsx';
+
 const Dashboard = () => {
   const context = useContext(MyContext)
-   const {mode} = context
+   const {mode,products,order,userData,} = context
+   const [orderCount,setOrderCount] = useState(0)
+   function totalOrders()
+   {
+        let t = 0;
+        order.map((item)=>{
+            t += item.cartItems.length;
+        })
+        setOrderCount(t);
+   }
+   useEffect(()=>{
+    totalOrders()
+   },[totalOrders])
   return(
   <Layout>
   <section className="text-gray-600 body-font mt-10 mb-10">
@@ -17,7 +30,7 @@ const Dashboard = () => {
                       <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                           <FaUserTie size={50} />
                       </div>
-                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>10</h2>
+                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{products.length}</h2>
                       <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Products</p>
                   </div>
               </div>
@@ -26,7 +39,7 @@ const Dashboard = () => {
                       <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                           <FaUserTie size={50} />
                       </div>
-                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>10</h2>
+                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{orderCount}</h2>
                       <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Orders</p>
                   </div>
               </div>
@@ -35,7 +48,7 @@ const Dashboard = () => {
                       <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                           <FaUserTie size={50} />
                       </div>
-                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>20</h2>
+                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{userData.length}</h2>
                       <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Users</p>
                   </div>
               </div>
@@ -44,7 +57,7 @@ const Dashboard = () => {
                       <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                           <FaUserTie size={50} />
                       </div>
-                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>20</h2>
+                      <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{products.length}</h2>
                       <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Products</p>
                   </div>
               </div>

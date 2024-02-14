@@ -23,10 +23,7 @@ const deleteCart = () =>{
 }
   return (
     <Layout>
-      <div className="flex gap-2">
-          <button onClick={()=>addCart()}>add</button>
-          <button onClick={()=>deleteCart()}>delete</button>
-      </div>
+      
          <HeroSection/>
          <Filter/>
          <ProductCard/>

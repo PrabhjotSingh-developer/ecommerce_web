@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import MyContext from './myContext.jsx'
 import {toast} from 'react-toastify'
-import { Timestamp,addDoc,collection, deleteDoc, onSnapshot, orderBy, query, setDoc,doc } from 'firebase/firestore'
+import { Timestamp,addDoc,collection, deleteDoc, onSnapshot, orderBy, query, setDoc,doc, QuerySnapshot, getDocs } from 'firebase/firestore'
 import { fireDB } from '../../firebase/FirebaseConfig.jsx';
 
 import { useNavigate } from 'react-router-dom'
@@ -67,7 +67,7 @@ const MyState = (props) => {
       
        const q =  query(
         collection(fireDB,"products"),
-        // orderBy("time")  
+        orderBy("time")  
          );
        const data = onSnapshot(q,(QuerySnapshot)=>{
          let productArray = [];
@@ -123,11 +123,51 @@ const MyState = (props) => {
       //  console.log("Product not deleted")
     }
   }
+  // Order details from database
+  const [order,setOrder] = useState([])
+  const getOrderData = async() =>{
+      setLoading(true);
+      try {
+        const result =await getDocs(collection(fireDB,"order"),orderBy("time"))
+        let orderArr= []
+        result.forEach((doc)=>{
+           orderArr.push(doc.data())
+          })
+          console.log(orderArr)
+          setOrder(orderArr)
+          setLoading(false)
+        
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      }
+  }
+  // userData 
+  const [userData,setUserData] = useState([])
+  const getUserData = async() =>{
+    setLoading(true)
+      try {
+         const result = await getDocs(collection(fireDB,"users"))
+         const userArray = [];
+         result.forEach((doc)=>{
+           userArray.push(doc.data())
+          
+          })
+           console.log(userArray)
+          setUserData(userArray)
+          setLoading(false) 
+          
+      } catch (error) {
+        console.log(error)
+      }
+  }
   useEffect(()=>{
          getProductData()
+         getOrderData()
+         getUserData()
   },[])
   return (
-    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct}}>
+    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData}}>
          {props.children}
     </MyContext.Provider>
   )

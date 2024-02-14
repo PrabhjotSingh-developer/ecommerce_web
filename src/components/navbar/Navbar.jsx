@@ -29,7 +29,7 @@ const NavLink = (props) =>{
             
               { user!=null &&
                 <li>
-              <Link>Order</Link> </li>
+              <Link to={"/order"}>Order</Link> </li>
               }
            
             { user?.user?.email === "hello@gmail.com" &&
@@ -39,7 +39,7 @@ const NavLink = (props) =>{
             }
             <li>
               {
-                user === null ? <Link to={"/login"}>Login</Link>  :<Link onClick={logout}>Logout</Link>
+                user === null ? <Link to={"/login"}>Login</Link>  :<Link onClick={logout} to="/">Logout</Link>
               }
             </li>
             <li>
