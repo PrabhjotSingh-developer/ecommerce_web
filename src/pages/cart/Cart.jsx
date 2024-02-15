@@ -8,7 +8,7 @@ import { deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const context = useContext(MyContext);
   const { mode,getOrderData } = context;
@@ -23,10 +23,11 @@ const Cart = () => {
     phoneNumber: "",
     pincode: "",
   });
-
+  const navigate = useNavigate()
   const buyNow = async (e) => {
    e.preventDefault()
-    console.log(detail)
+   
+    // console.log(detail)
     if (
       detail.name === "" ||
       detail.address === "" ||
@@ -98,7 +99,15 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   function openModal() {
-    setModal(true);
+    const userIsLogin = JSON.parse( localStorage.getItem('user'))
+   if(userIsLogin === null)
+    {
+         navigate("/login");
+         toast.success("Please login first ");
+         
+    }
+    else
+       setModal(true);
   }
   function closeModal() {
     if (modal) setModal(false);

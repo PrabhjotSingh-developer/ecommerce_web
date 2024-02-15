@@ -63,6 +63,7 @@ const MyState = (props) => {
   const [products,setProducts] = useState([]);
   const getProductData = async () =>{
     setLoading(true);
+    
     try {
       
        const q =  query(
@@ -79,6 +80,7 @@ const MyState = (props) => {
           setProducts(productArray);
           setLoading(false)
         })
+        console.log(data)
         return data
 
     } catch (error) { 
@@ -123,6 +125,13 @@ const MyState = (props) => {
       //  console.log("Product not deleted")
     }
   }
+  const [viewProduct,setViewProduct] = useState({})
+  const getSingleProduct = async(id) =>{
+    console.log(id)
+    console.log(products)
+      const data = products.filter((item)=> id.substring(1) === item.id)
+    setViewProduct(data)
+  }
   // Order details from database
   const [order,setOrder] = useState([])
   const getOrderData = async() =>{
@@ -133,7 +142,7 @@ const MyState = (props) => {
         result.forEach((doc)=>{
            orderArr.push(doc.data())
           })
-          console.log(orderArr)
+          // console.log(orderArr)
           setOrder(orderArr)
           setLoading(false)
         
@@ -153,7 +162,7 @@ const MyState = (props) => {
            userArray.push(doc.data())
           
           })
-           console.log(userArray)
+          //  console.log(userArray)
           setUserData(userArray)
           setLoading(false) 
           
@@ -167,7 +176,7 @@ const MyState = (props) => {
          getUserData()
   },[])
   return (
-    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData}}>
+    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData,getSingleProduct,viewProduct,  getProductData}}>
          {props.children}
     </MyContext.Provider>
   )

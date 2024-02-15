@@ -14,6 +14,7 @@ import {
 import MyState from "./context/data/myState.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AllProducts from "./pages/allproducts/AllProducts.jsx";
 function App() {
   return (
     <Router>
@@ -28,6 +29,8 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/allproducts" element={<AllProducts />} />
+
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/dashboard"
@@ -39,7 +42,7 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/productinfo/:id" element={<ProductInfo />} />
+          <Route path="/productinfo/:productid" element={<ProductInfo />} />
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/addproduct"

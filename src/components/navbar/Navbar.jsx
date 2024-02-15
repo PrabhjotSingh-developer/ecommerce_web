@@ -24,7 +24,7 @@ const NavLink = (props) =>{
                  <Link to={"/"}>Home</Link>
               </li>
             <li>
-              <Link>All Products</Link>
+              <Link to="/allproducts"> All Products</Link>
             </li>
             
               { user!=null &&
