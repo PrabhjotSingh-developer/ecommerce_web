@@ -76,11 +76,11 @@ const MyState = (props) => {
           QuerySnapshot.forEach((doc)=>{ 
             productArray.push({...doc.data(),id:doc.id});
           })
-         
+          localStorage.setItem('AllProductsData',JSON.stringify(productArray))
           setProducts(productArray);
           setLoading(false)
         })
-        console.log(data)
+       
         return data
 
     } catch (error) { 
@@ -125,13 +125,8 @@ const MyState = (props) => {
       //  console.log("Product not deleted")
     }
   }
-  const [viewProduct,setViewProduct] = useState({})
-  const getSingleProduct = async(id) =>{
-    console.log(id)
-    console.log(products)
-      const data = products.filter((item)=> id.substring(1) === item.id)
-    setViewProduct(data)
-  }
+
+ 
   // Order details from database
   const [order,setOrder] = useState([])
   const getOrderData = async() =>{
@@ -176,7 +171,7 @@ const MyState = (props) => {
          getUserData()
   },[])
   return (
-    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData,getSingleProduct,viewProduct,  getProductData}}>
+    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData,  getProductData}}>
          {props.children}
     </MyContext.Provider>
   )

@@ -6,13 +6,15 @@ import MyContext from '../../context/data/myContext'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/CartSlice'
 import {toast} from  'react-toastify'
+import Loader from '../../components/loader/Loader.jsx'
 const ProductInfo = () => {
     const productId = useParams()
     
-     const {getSingleProduct,viewProduct,getProductData} = useContext(MyContext)
-    
+     const {setLoading,loading} = useContext(MyContext)
      const dispatch = useDispatch()
-
+    
+     const [viewProduct,setViewProduct] = useState([])
+     console.log(viewProduct)
     const addCart = (product) =>{
         console.log(product)
         dispatch(addToCart(product))
@@ -22,25 +24,20 @@ const ProductInfo = () => {
         //  setViewProduct(productfind)
   
     //  console.log(viewProduct)
-     useEffect(()=>{
-       async function fetchData()
-       {
+
+    useEffect(()=>{   
+        let data = JSON.parse(localStorage.getItem('AllProductsData'))
+        console.log(data)
+        setViewProduct(data.filter((item)=>item.id===productId.productid.substring(1)))
         
-         try {
-             const response = await getProductData();
-          console.log(response)
-            getSingleProduct(productId.productid)
-         } catch (error) {
-            
-         }
-         
-       }
-      fetchData()
-     },[productId])
+        },[])
+ 
+    
     return (
         <Layout>
            
             <section className="text-gray-600 body-font overflow-hidden">
+             { 
                 <div className="container px-5 py-20 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
                         <img
@@ -183,7 +180,12 @@ const ProductInfo = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                  </div>
+             }
+                 
+
+            
+                
             </section>
 
         </Layout>
