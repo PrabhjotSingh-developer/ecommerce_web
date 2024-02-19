@@ -1,25 +1,34 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect ,useState} from 'react'
 import MyContext from '../../context/data/myContext'
 import Layout from '../../components/layout/Layout'
 import Loader from '../../components/loader/Loader'
 
 function Order() {
   const userid = JSON.parse(localStorage.getItem('user')).user.uid
-  console.log(userid)
+  // console.log(userid)
   const context = useContext(MyContext)
   const { mode, loading, order } = context
+  // console.log(order.length)
+
+  const [userOrder,setUserOrder] = useState([])
+  useEffect(()=>{
+     setUserOrder(order.filter(obj => obj.userid == userid))
+    // console.log(userOrder.length)
+  },[])
+
   return (
     <Layout>
       {loading && <Loader />}
-      {order.length > 0 ?
-        (<>
+      {
+      (userOrder.length > 0) ?(<>
              <h1 className='text-2xl font-bold text-center py-10' style={{ color: mode === 'dark' ? 'white' : '' }}>Your Previous Orders</h1>
           <div className=" h-full pt-10">
             {
-              order.filter(obj => obj.userid == userid).map((order) => {
+              
+              userOrder.map((order,index) => {
                 // order.cartItems.map()
                 return (
-                  <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+                  <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0" key={index}>
                     {
                       order.cartItems.map((item) => {
                         return (
@@ -44,9 +53,11 @@ function Order() {
             }
           </div>
         </>)
-        :
-        (
-          <h2 className=' text-center tex-2xl text-white'>Not Order</h2>
+        :    (
+          <div>
+           
+            <h1 className='text-2xl font-bold text-center py-10' style={{ color: mode === 'dark' ? 'white' : '' }}>No Previous Orders</h1>
+          </div>
         )
 
       }

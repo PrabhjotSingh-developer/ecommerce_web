@@ -137,7 +137,7 @@ const MyState = (props) => {
         result.forEach((doc)=>{
            orderArr.push(doc.data())
           })
-          // console.log(orderArr)
+          console.log(orderArr)
           setOrder(orderArr)
           setLoading(false)
         

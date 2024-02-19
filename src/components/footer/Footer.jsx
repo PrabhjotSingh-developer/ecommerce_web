@@ -28,14 +28,14 @@ const Footer = () => {
       <div className={`flex justify-between lg:w-[85%] py-4 md:p-9 w-[100%] items-center mx-auto md:flex-row flex-col lg:gap-3 gap-5 `}>
         <div className="footer_links flex sm:w-[80%] md:w-[50%] lg:w-[90%] md:p-3 sm:justify-between sm:flex-row flex-col items-center sm:items-start gap-7 ">
               {
-                data.map((item)=>{
+                data.map((item,index)=>{
                     const {links} = item
                     // console.log(links)
-                  return <div className={`footer_items flex flex-col gap-y-3 sm:py-3 items-center ${color} `}>
+                  return <div className={`footer_items flex flex-col gap-y-3 sm:py-3 items-center ${color} `} >
                          <h3 className='font-bold'>{item.head}</h3>
                          <div className="allLinks flex flex-col gap-3 items-center sm:items-start">
                            {
-                           links.map((linkName)=>(
+                           links.map((linkName,key)=>(
                               <Link >{linkName}</Link>
                            ))
                          }
