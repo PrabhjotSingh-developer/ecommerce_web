@@ -1,0 +1,8 @@
+@media screen and (max-width:300px) {
+     .innerfilter{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+     }
+}

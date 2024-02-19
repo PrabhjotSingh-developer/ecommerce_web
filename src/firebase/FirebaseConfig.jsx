@@ -7,13 +7,20 @@ import {getAuth} from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC1zkTeFryypPGvmu2sf0fy5vQdEN_CYf4",
-  authDomain: "ecommerce-e8d4a.firebaseapp.com",
-  projectId: "ecommerce-e8d4a",
-  storageBucket: "ecommerce-e8d4a.appspot.com",
-  messagingSenderId: "849034074998",
-  appId: "1:849034074998:web:18872642fb6bb420517857"
+  apiKey:"AIzaSyC1zkTeFryypPGvmu2sf0fy5vQdEN_CYf4" ,
+  authDomain:"ecommerce-e8d4a.firebaseapp.com",
+  projectId:"ecommerce-e8d4a" ,
+  storageBucket:"ecommerce-e8d4a.appspot.com" ,
+  messagingSenderId:"849034074998" ,
+  appId:"1:849034074998:web:18872642fb6bb420517857"  
 };
+
+// apiKey:String(import.meta.env.FIREBASE_APIKEY ),
+// authDomain:String(import.meta.env.FIREBASE_AUTHDOMAIN),
+// projectId:String(import.meta.env.FIREBASE_PROJECTID) ,
+// storageBucket:String(import.meta.env.FIREBASE_STORAGEBUCKET) ,
+// messagingSenderId:String(import.meta.env.FIREBASE_MESSAGESENDERID) ,
+// appId:String(import.meta.env.FIREBASE_APPID)
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

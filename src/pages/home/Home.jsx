@@ -25,7 +25,7 @@ const deleteCart = () =>{
     <Layout>
       
          <HeroSection/>
-         <Filter/>
+
          <ProductCard/>
          <Track/>
          <Testinomial/>

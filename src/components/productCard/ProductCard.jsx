@@ -32,7 +32,7 @@ const ProductCard = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="productCards grid sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-x-7 gap-y-17 w-[97%] md:w-[85%] sm:p-5 p-3 lg:p-9 mx-auto">
+        <div className="productCards grid  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-7 gap-y-17 w-[97%] md:w-[85%] sm:p-5 p-3 lg:p-9 mx-auto">
           {products.map((item, index) => {
             if (index < 4)
               return (

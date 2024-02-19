@@ -4,23 +4,29 @@ import Loader from "../../components/loader/Loader";
 import MyContext from "../../context/data/myContext";
 import Layout from "../../components/layout/Layout";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../redux/CartSlice";
+import { useDispatch } from "react-redux";
+import {toast} from "react-toastify"
+import "./allproduct.css"
 const AllProducts = () => {
-  const {loading} = useContext(MyContext)
+  const {loading,mode} = useContext(MyContext)
  
   const [showPro,setShowPro] = useState([])
   const [viewData,setViewData] = useState([])
   const [selectedValue,setSelectedValue] = useState("")
+  const color = mode === "light" ? "" : "text-white";
+  const background_color = mode === "light" ? "bg-[#f3f4f6]" : "bg-[#282C34]";
+   const dispatch = useDispatch();
   function filterProduct(e)
   {
+   
     let data = JSON.parse(localStorage.getItem('AllProductsData'))
     setShowPro(data)
     let arr = []
     let f = e.target.value
       if(f === "All")
         return
-       
          arr = viewData.filter((item)=>item.category === f)
-        
          setShowPro(arr)
       setSelectedValue("")
      
@@ -50,6 +56,10 @@ const AllProducts = () => {
     // console.log(showPro)
     // setShowPro(arr)
   }
+  const addCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success("Added to Cart Successfully");
+  };
   useEffect(()=>{
       let data = JSON.parse(localStorage.getItem('AllProductsData'))
       setShowPro(data)
@@ -57,24 +67,28 @@ const AllProducts = () => {
   },[])
   return (
     <Layout>
-      <div className="flex flex-col">
-         <div className="innerfilter flex justify-center items-center w-[100%] ">
-            <label htmlFor="Category" className="mx-4">Category</label>
-            <select name="Category" defaultChecked="All"  className="mr-5" id="" onChange={filterProduct}>
+      <div className="flex flex-col py-4">
+         <div className="innerfilter flex justify-center items-center gap-4  w-[100%] flex-row">
+           <div className="select_state">
+            <label htmlFor="Category" className={`mr-2 ${color}`}>Category</label>
+            <select name="Category" defaultChecked="All"  className=" py-1"  id="" onChange={filterProduct}>
                 <option value="All" >All</option>
                 <option value="Laptop" >Laptop</option>
                 <option value="headphones" >Airdopes</option>
-                <option value="Watches" >Watches</option>
+                
              </select>
-            <label htmlFor="Price"  className="mx-4">Price</label>
-
-             <select name="Price" className="mr-5" id="" value={selectedValue} onChange={filterPrice}>
+           </div>
+            
+           <div className="select_state">
+            <label htmlFor="Price"  className={`md:ml-10 mr-2 ${color}`}>Price</label>
+             <select name="Price" className=" py-1" id="" value={selectedValue} onChange={filterPrice}>
                 <option value="">Select by Price</option>
                 <option value="low">Low to High</option>
                 <option value="high"> High to Low</option>
              </select>
+             </div>
          </div>
-          <div className="allProducts grid gap-10 lg:grid-cols-3 md:grid-cols-2 place-content-center mt-20 w-[80%] mx-auto ">
+          <div className="allProducts grid gap-10 lg:grid-cols-3 md:grid-cols-2 place-content-center py-20  md:w-[80%] mx-auto ">
                {
                   loading ? <Loader/>:
                   (
@@ -84,7 +98,7 @@ const AllProducts = () => {
                       {
                          
                        return   <div
-                       className="productItem w-[90%] p-5 border rounded-lg gap-5 flex flex-col mx-auto"
+                       className="productItem w-[90%] md:w-[90%] p-5 border rounded-lg gap-5 flex flex-col mx-auto"
                        key={index}
                      >
                        <Link to={`/productinfo/:${item.id}`}>
@@ -93,7 +107,7 @@ const AllProducts = () => {
                          </div>
                        </Link>
                        <div
-                         className={`product_content px-2 flex flex-col gap-3 py-4 `}
+                         className={`product_content px-2 flex flex-col gap-3 py-4 ${color}`}
                        >
                          <Link to={`/productinfo/:${item.id}`}>
                            <p>E-bharat</p>
@@ -105,7 +119,7 @@ const AllProducts = () => {
                          <h4 className="font-semibold">₹{item.price}</h4>
                          <button
                            className="bg-pink-600 px-4 py-2 mb-4 rounded-lg text-white font-semibold "
-                           
+                           onClick={()=>addCart(item)}
                          >
                            Add to cart
                          </button>
