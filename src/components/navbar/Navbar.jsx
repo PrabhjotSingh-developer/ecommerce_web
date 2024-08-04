@@ -75,7 +75,7 @@ const Navbar = () => {
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
                 <GiHamburgerMenu className={`cursor-pointer `} onClick={dropdownMenu}/>
            </div>
-           <Link to="/" > <h3 className={`font-1rem font-[800] ${color}`}>Ecommerce</h3></Link> 
+           <Link to="/" > <h3 className={`font-1rem font-[800] ${color}`}>E-Cart</h3></Link> 
               </div>
             <div className="links flex items-center gap-8">
            <NavLink className={`hidden gap-4 items-center sm:flex ${color}` }/>
