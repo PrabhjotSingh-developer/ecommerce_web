@@ -5,7 +5,7 @@ import Home from '../../pages/home/Home.jsx'
 const Layout = ({children}) => {
   
   return (
-    <div>
+    <div className='absolute top-0 w-[100%]'>
        <Navbar/>
         <div className="content">
              {children}

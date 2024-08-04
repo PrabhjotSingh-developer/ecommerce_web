@@ -13,7 +13,7 @@ const ProductCard = () => {
   const background_color = mode === "light" ? "bg-[#f3f4f6]" : "bg-[#282C34]";
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
-  console.log(loading);
+
   const addCart = (product) => {
     dispatch(addToCart(product));
     toast.success("Added to Cart Successfully");

@@ -236,7 +236,7 @@ function DashboardTab() {
                
            {order.map((allorder, index) => {
                                     return (
-                                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
+                                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400" key={index}>
                                             <thead className="text-xs text-black uppercase bg-gray-200 " style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                                 <tr>
                                                     <th scope="col" className="px-6 py-3">
@@ -279,9 +279,9 @@ function DashboardTab() {
                                             </thead>
                                             {allorder.cartItems.map((item, index) => {
                                                 const {title,description,category,imageUrl,price} = item;
-                                                console.log(item)
+                                                
                                                 return (
-                                                    <tbody>
+                                                    <tbody key={index}>
                                                         <tr className="bg-gray-50 border-b  dark:border-gray-700" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
                                                                 {index + 1}.
@@ -367,7 +367,7 @@ function DashboardTab() {
                   </thead>
                   <tbody>
                     {userData.map((item,index)=>(
-                       <tr
+                       <tr key={index}
                       className="bg-gray-50 border-b  dark:border-gray-700"
                       style={{
                         backgroundColor: mode === "dark" ? "rgb(46 49 55)" : "",

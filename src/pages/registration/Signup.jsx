@@ -17,6 +17,7 @@ const Signup = () => {
             setLoading(true)
             if(name==="" || email === "" || password ==="")
             {
+                  setLoading(false)
                    return toast.error("All field are required")
             }
             try {

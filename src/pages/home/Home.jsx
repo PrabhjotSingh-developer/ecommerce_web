@@ -22,6 +22,9 @@ const deleteCart = () =>{
   dispatch(deleteFromCart('shirt'))
 }
   return (
+    <div className='relative top-0'>
+
+    
     <Layout>
       
          <HeroSection/>
@@ -30,6 +33,7 @@ const deleteCart = () =>{
          <Track/>
          <Testinomial/>
     </Layout>
+    </div>
   )
 }
 

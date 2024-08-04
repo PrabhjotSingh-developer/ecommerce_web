@@ -9,7 +9,7 @@ import {toast} from  'react-toastify'
 import Loader from '../../components/loader/Loader.jsx'
 const ProductInfo = () => {
     const productId = useParams()
-    
+    console.log(productId)
      const {setLoading,loading} = useContext(MyContext)
      const dispatch = useDispatch()
     
@@ -26,6 +26,7 @@ const ProductInfo = () => {
     //  console.log(viewProduct)
 
     useEffect(()=>{   
+        window.scrollTo(0, 0);
         let data = JSON.parse(localStorage.getItem('AllProductsData'))
         console.log(data)
         setViewProduct(data.filter((item)=>item.id===productId.productid.substring(1)))
@@ -34,7 +35,8 @@ const ProductInfo = () => {
  
     
     return (
-        <Layout>
+       
+            <Layout>
            
             <section className="text-gray-600 body-font overflow-hidden">
              { 
@@ -189,6 +191,8 @@ const ProductInfo = () => {
             </section>
 
         </Layout>
+        
+        
     )
 }
 

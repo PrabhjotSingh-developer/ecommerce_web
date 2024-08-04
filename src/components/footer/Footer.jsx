@@ -31,12 +31,12 @@ const Footer = () => {
                 data.map((item,index)=>{
                     const {links} = item
                     // console.log(links)
-                  return <div className={`footer_items flex flex-col gap-y-3 sm:py-3 items-center ${color} `} >
+                  return <div className={`footer_items flex flex-col gap-y-3 sm:py-3 items-center ${color} `} key={index} >
                          <h3 className='font-bold'>{item.head}</h3>
                          <div className="allLinks flex flex-col gap-3 items-center sm:items-start">
                            {
-                           links.map((linkName,key)=>(
-                              <Link >{linkName}</Link>
+                           links.map((linkName,index)=>(
+                              <Link key={index}>{linkName}</Link>
                            ))
                          }
                          </div>

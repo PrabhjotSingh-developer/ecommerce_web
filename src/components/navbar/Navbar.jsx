@@ -32,7 +32,7 @@ const NavLink = (props) =>{
               <Link to={"/order"}>Order</Link> </li>
               }
            
-            { user?.user?.email === "hello@gmail.com" &&
+            { user?.user?.email === "prabhjotsingh0001@gmail.com" &&
               <li>
               <Link to={"/dashboard"}>Admin</Link>
               </li>

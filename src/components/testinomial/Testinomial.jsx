@@ -35,8 +35,8 @@ const Testinomial = () => {
             </div>
             <div className="testinomial_card flex w-[95%] md:w-[80%] gap-5 mx-auto mt-8 flex-wrap flex-col justify-center sm:flex-row ">
                 {
-                    data.map((item)=>(
-                         <div className={`testinomial_items flex items-center flex-col w-[90%] mx-auto lg:w-[32%] p-4 gap-4 ${color}`}>
+                    data.map((item,index)=>(
+                         <div className={`testinomial_items flex items-center flex-col w-[90%] mx-auto lg:w-[32%] p-4 gap-4 ${color}`} key={index}>
                           <div className="w-[100px] h-[100px] bg-pink-600 rounded-full">
 
                           </div>

@@ -72,13 +72,19 @@ function App() {
 export default App;
 
 export const ProtectedRoute = ({ children }) => {
+
   const user = localStorage.getItem("user");
-  if (user) return children;
+  if (user)
+    {
+      console.log("user is available")
+      return children;
+    }
   else return <Navigate to={"/login"} />;
 };
 
 export const ProtectedRouteForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("user"));
-  if ((admin.user.email = "prabjot@gmail.com")) return children;
+   console.log("IT works ")
+  if ((admin?.user?.email === "prabhjotsingh0001@gmail.com")) return children;
   else return <Navigate to={"/login"} />;
 };

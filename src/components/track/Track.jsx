@@ -29,8 +29,8 @@ const Track = () => {
     <div className={`main_track ${mode==='light'?'bg-[#f3f4f6]':''}`}>
        <div className={`w-[95%] md:w-[80%] mx-auto track_sec flex gap-9 justify-center flex-wrap lg:justify-evenly py-[6rem] ${color} ${mode==='light'?'bg-[#f3f4f6]':''}`}>
           {
-            data.map((item)=>(
-              <div className={`track_item flex flex-col gap-3 items-center border p-8 rounded-lg ${background_color} w-[90%] lg:w-[auto]`}>
+            data.map((item,index)=>(
+              <div className={`track_item flex flex-col gap-3 items-center border p-8 rounded-lg ${background_color} w-[90%] lg:w-[auto]`} key={index}>
                       <span className='text-3xl'>{item.icon}</span>
                      <h2 className='font-semibold'>{item.heading}</h2>
                      <p>{item.para}</p>
