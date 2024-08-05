@@ -9,14 +9,15 @@ import { useSelector } from "react-redux";
 import {toast} from 'react-toastify'
 
 const NavLink = (props) =>{
-
+  const context = useContext(MyContext);
+  const {getProductData} = context;
   const navigate = useNavigate()
       function logout()
       {
         localStorage.clear('user');
         toast.success('logout Successful')
-        setLoading(false)
         navigate("/")
+        getProductData()
       }
       const user = JSON.parse( localStorage.getItem('user'))
       
@@ -75,7 +76,7 @@ const Navbar = () => {
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
                 <GiHamburgerMenu className={`cursor-pointer `} onClick={dropdownMenu}/>
            </div>
-           <Link to="/" > <h3 className={`text-[1.2rem] font-[700] ${color}`}>E-Cart</h3></Link> 
+           <Link to="/" > <h3 className={`text-[1.2rem] font-[700] ${color}`}>Cartify</h3></Link> 
               </div>
             <div className="links flex items-center gap-8">
            <NavLink className={`hidden gap-4 items-center sm:flex ${color}` }/>
