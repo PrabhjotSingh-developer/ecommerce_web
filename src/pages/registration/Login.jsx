@@ -24,7 +24,7 @@ async function login(e)
       setLoading(true)
       try {
         const result = await signInWithEmailAndPassword(auth,email,password);
-        console.log(result)
+   
         localStorage.setItem('user',JSON.stringify(result));
         toast.success('Signin Successfully', {
           position: "top-right",

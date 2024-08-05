@@ -19,7 +19,7 @@ const NavLink = (props) =>{
         navigate("/")
       }
       const user = JSON.parse( localStorage.getItem('user'))
-      console.log(user?.user)
+      
       return (
             <ul className={` ${props.className}`}>
               <li>
@@ -44,9 +44,7 @@ const NavLink = (props) =>{
                 user === null ? <Link to={"/login"}>Login</Link>  :<Link onClick={logout} to="/">Logout</Link>
               }
             </li>
-            <li>
-              
-            </li>
+           
           </ul>
       )
 }
