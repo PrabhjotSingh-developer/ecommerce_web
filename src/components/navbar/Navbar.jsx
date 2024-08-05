@@ -7,6 +7,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import {toast} from 'react-toastify'
+
 const NavLink = (props) =>{
 
   const navigate = useNavigate()
@@ -14,10 +15,11 @@ const NavLink = (props) =>{
       {
         localStorage.clear('user');
         toast.success('logout Successful')
+        setLoading(false)
         navigate("/")
       }
       const user = JSON.parse( localStorage.getItem('user'))
-      // console.log(user)
+      console.log(user?.user)
       return (
             <ul className={` ${props.className}`}>
               <li>
@@ -43,7 +45,7 @@ const NavLink = (props) =>{
               }
             </li>
             <li>
-              <Link>India</Link>
+              
             </li>
           </ul>
       )
@@ -52,13 +54,13 @@ const Navbar = () => {
   const cartItems = useSelector((state)=>state.cart);
 
   const context = useContext(MyContext);
-  const { mode, toggleMode } = context;
-  const [mobileMenu,setMobileMenu] = useState(false);
+  const { mode, toggleMode ,mobileBar,setMobileBar} = context;
+ 
   const color = mode === 'light' ? '' :'text-white'
   const background_color = mode === 'light' ? 'bg-[#f3f4f6]':'bg-[#282C34]' 
   function dropdownMenu()
   {
-          setMobileMenu(!mobileMenu)
+          setMobileBar(!mobileBar)
   }
   return (
     <header className="navbar  w-[100%]">
@@ -75,7 +77,7 @@ const Navbar = () => {
            <div className="side_bar sm:hidden bg-gray-200 p-2  rounded">
                 <GiHamburgerMenu className={`cursor-pointer `} onClick={dropdownMenu}/>
            </div>
-           <Link to="/" > <h3 className={`font-1rem font-[800] ${color}`}>E-Cart</h3></Link> 
+           <Link to="/" > <h3 className={`text-[1.2rem] font-[700] ${color}`}>E-Cart</h3></Link> 
               </div>
             <div className="links flex items-center gap-8">
            <NavLink className={`hidden gap-4 items-center sm:flex ${color}` }/>
@@ -92,8 +94,8 @@ const Navbar = () => {
               </div>
         </div>
      
-        <div className={`mobile_sidebar sm:hidden ${background_color}`}>
-             <NavLink className={`absolute top-[63px] w-[100%] gap-4 flex flex-col p-6 z-40 ${color} ${background_color} ${mobileMenu?'left-0 transition-all h-[100vh]':'left-[-100%] transition-all'} `}/>
+        <div className={`mobile_sidebar sm:hidden ${background_color} `}>
+             <NavLink className={`absolute top-[63px] w-[100%] gap-4 flex flex-col p-6 z-40 ${color} ${background_color} ${mobileBar?'left-0 transition-all h-[95vh]':'left-[-100%] transition-all'} `}/>
         </div>
       </nav>
      

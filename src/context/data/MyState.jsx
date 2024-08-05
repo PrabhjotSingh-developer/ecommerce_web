@@ -10,6 +10,7 @@ const MyState = (props) => {
   const navigate = useNavigate()
   const [mode,setMode] = useState('light');
   const [loading,setLoading] = useState(false)
+  const [mobileBar,setMobileBar] = useState(false)
   const toggleMode = () =>{
     if(mode === 'light')
     {
@@ -95,6 +96,10 @@ const MyState = (props) => {
   }
   // update product 
   const updateProduct = async(item)=>{
+    if(product.title == "" ||product.price== "" ||product.imageUrl == "" ||product.category =="" ||product.description=="" )
+      {
+        return toast.error("all fields are required")
+      }
        setLoading(true);
        try {
            await setDoc(doc(fireDB,"products",product.id),product)
@@ -137,7 +142,7 @@ const MyState = (props) => {
         result.forEach((doc)=>{
            orderArr.push(doc.data())
           })
-          console.log(orderArr)
+         
           setOrder(orderArr)
           setLoading(false)
         
@@ -171,7 +176,7 @@ const MyState = (props) => {
          getUserData()
   },[])
   return (
-    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData,  getProductData}}>
+    <MyContext.Provider value={{mode,toggleMode,loading,setLoading,product,setProduct,addProducts,products,editHandle,updateProduct,deleteProduct,order,getOrderData,userData,  getProductData,mobileBar,setMobileBar}}>
          {props.children}
     </MyContext.Provider>
   )

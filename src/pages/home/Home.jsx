@@ -21,6 +21,7 @@ const addCart = () =>{
 const deleteCart = () =>{
   dispatch(deleteFromCart('shirt'))
 }
+
   return (
     <div className='relative top-0'>
 

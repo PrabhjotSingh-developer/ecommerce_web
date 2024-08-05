@@ -3,17 +3,16 @@ import { useContext ,useState} from "react";
 import Loader from "../../components/loader/Loader";
 import MyContext from "../../context/data/myContext";
 import Layout from "../../components/layout/Layout";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { addToCart } from "../../redux/CartSlice";
 import { useDispatch } from "react-redux";
 import {toast} from "react-toastify"
 import "./allproduct.css"
 const AllProducts = () => {
-  let data = JSON.parse(localStorage.getItem('AllProductsData')) 
 
   const {loading,mode} = useContext(MyContext)
-  const [showPro,setShowPro] = useState(data)
-  const [viewData,setViewData] = useState(data)
+  const [showPro,setShowPro] = useState([])
+  const [viewData,setViewData] = useState([])
   const [selectedValue,setSelectedValue] = useState("")
   const color = mode === "light" ? "" : "text-white";
   const background_color = mode === "light" ? "bg-[#f3f4f6]" : "bg-[#282C34]";
@@ -62,8 +61,11 @@ const AllProducts = () => {
     toast.success("Added to Cart Successfully");
   };
   useEffect(()=>{
-      
-  },[data])
+  let data = JSON.parse(localStorage.getItem('AllProductsData')) 
+    setShowPro(data)
+    setViewData
+    
+  })
   return (
     <Layout>
       <div className="flex flex-col py-4">

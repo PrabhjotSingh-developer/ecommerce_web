@@ -9,14 +9,14 @@ import {toast} from  'react-toastify'
 import Loader from '../../components/loader/Loader.jsx'
 const ProductInfo = () => {
     const productId = useParams()
-    console.log(productId)
+    
      const {setLoading,loading} = useContext(MyContext)
      const dispatch = useDispatch()
     
      const [viewProduct,setViewProduct] = useState([])
-     console.log(viewProduct)
+     
     const addCart = (product) =>{
-        console.log(product)
+      
         dispatch(addToCart(product))
         toast.success("Added to Cart Successfully")
       }
@@ -28,7 +28,7 @@ const ProductInfo = () => {
     useEffect(()=>{   
         window.scrollTo(0, 0);
         let data = JSON.parse(localStorage.getItem('AllProductsData'))
-        console.log(data)
+    
         setViewProduct(data.filter((item)=>item.id===productId.productid.substring(1)))
         
         },[])
